@@ -1,0 +1,125 @@
+import React from 'react';
+import { motion } from 'framer-motion';
+import { ArrowRight } from 'lucide-react';
+import InteractiveHoverText from './InteractiveHoverText';
+
+const containerVariants = {
+  hidden: {},
+  show: { transition: { staggerChildren: 0.15, delayChildren: 0.1 } },
+};
+
+const itemVariants = {
+  hidden: { opacity: 0, y: 20 },
+  show:   { opacity: 1, y: 0, transition: { duration: 0.8, ease: 'easeOut' } },
+};
+
+const GRID_LINES = Array.from({ length: 15 });
+
+/** Decorative geometric element for the right panel */
+function RightPanelDecor() {
+  return (
+    <div className="absolute inset-0 flex items-center justify-center pointer-events-none select-none" aria-hidden="true">
+      {/* Large circle ring */}
+      <div className="absolute w-[480px] h-[480px] rounded-full border border-[color:var(--color-border)] opacity-30" />
+      <div className="absolute w-[320px] h-[320px] rounded-full border border-[color:var(--color-border)] opacity-20" />
+      <div className="absolute w-[160px] h-[160px] rounded-full border border-accentBlue/20 opacity-40" />
+      {/* Cross-hair lines */}
+      <div className="absolute w-px h-64 bg-[color:var(--color-border)] opacity-20" />
+      <div className="absolute w-64 h-px bg-[color:var(--color-border)] opacity-20" />
+      {/* Center dot */}
+      <div className="w-2 h-2 rounded-full bg-accentBlue/60 shadow-[0_0_20px_rgba(52,60,187,0.8)]" />
+      {/* Corner accent marks */}
+      <div className="absolute top-16 left-16 w-8 h-8 border-t border-l border-[color:var(--color-border)] opacity-40" />
+      <div className="absolute top-16 right-16 w-8 h-8 border-t border-r border-[color:var(--color-border)] opacity-40" />
+      <div className="absolute bottom-16 left-16 w-8 h-8 border-b border-l border-[color:var(--color-border)] opacity-40" />
+      <div className="absolute bottom-16 right-16 w-8 h-8 border-b border-r border-[color:var(--color-border)] opacity-40" />
+      {/* Subtle stat label */}
+      <span className="absolute bottom-24 right-20 font-mono text-[10px] tracking-[0.3em] uppercase opacity-20 rotate-90">
+        Web3 Growth Agency
+      </span>
+    </div>
+  );
+}
+
+export default function Hero() {
+  return (
+    <section className="relative w-full brutalist-border-b grid grid-cols-1 lg:grid-cols-2 overflow-hidden">
+
+      {/* ── Left Column – Content ──────────────────────── */}
+      <div className="relative p-8 md:p-16 lg:p-24 flex flex-col justify-center min-h-[85vh] lg:min-h-[calc(100vh-175px)] brutalist-border-r bg-background/50 backdrop-blur-sm z-10 transform-gpu">
+
+        {/* Subtle vertical grid lines */}
+        <div className="hero-bg" aria-hidden="true">
+          {GRID_LINES.map((_, i) => (
+            <div key={i} className="w-px h-full bg-[rgb(var(--color-text))]" />
+          ))}
+        </div>
+
+        <motion.div
+          variants={containerVariants}
+          initial="hidden"
+          animate="show"
+          className="flex flex-col items-start"
+        >
+          {/* Tag line */}
+          <motion.div variants={itemVariants} className="mb-10 flex items-center gap-4">
+            <div className="w-12 h-px bg-accentBlue shrink-0" />
+            <span className="text-sm uppercase tracking-[0.35em] font-semibold text-accentBlue neon-glow-blue">
+              Web3 Growth Infrastructure
+            </span>
+          </motion.div>
+
+          {/* Headline — heavier weight */}
+          <motion.div variants={itemVariants} className="mb-10 w-full">
+            <InteractiveHoverText
+              lines={['Scale', 'Your Web3', 'Vision.']}
+              baseWeight={900}
+              className="font-display text-6xl md:text-8xl lg:text-[7rem] font-black tracking-[-0.03em] leading-[0.88] uppercase text-[color:var(--color-text)]"
+            />
+          </motion.div>
+
+          {/* Divider rule */}
+          <motion.div variants={itemVariants} className="w-full h-px bg-[color:var(--color-border)] mb-10" />
+
+          {/* Sub-copy */}
+          <motion.p
+            variants={itemVariants}
+            className="text-base md:text-lg max-w-md text-[color:var(--color-text)] mb-12 font-body leading-relaxed opacity-70"
+          >
+            We execute high-impact KOL campaigns, build resilient global communities,
+            and drive explosive growth for top-tier Web3 projects.
+            No fluff — just scalable results.
+          </motion.p>
+
+          {/* CTA Buttons — clear hierarchy */}
+          <motion.div variants={itemVariants} className="flex flex-col sm:flex-row gap-4 relative z-20">
+            {/* PRIMARY — solid electric blue */}
+            <a
+              href="https://zcal.co/cryptocrowdtr/firstmeeting"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Book a discovery call with CryptoCrowd"
+              className="group px-8 py-4 bg-[#0052FF] text-white font-bold tracking-[0.15em] text-sm clip-chamfer uppercase flex items-center justify-center gap-3 transition-all duration-300 hover:brightness-110 hover:-translate-y-0.5 hover:shadow-[0_8px_30px_rgba(0,82,255,0.45)]"
+            >
+              BOOK A CALL
+              <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1.5" />
+            </a>
+
+            {/* SECONDARY — thin outline only */}
+            <a
+              href="#case-studies"
+              className="group px-8 py-4 border border-[color:var(--color-border)] clip-chamfer-reverse uppercase font-bold tracking-[0.15em] text-sm text-[color:var(--color-text)] flex items-center justify-center transition-all duration-300 hover:border-accentBlue/60 hover:text-accentBlue hover:-translate-y-0.5"
+            >
+              CASE STUDIES
+            </a>
+          </motion.div>
+        </motion.div>
+      </div>
+
+      {/* ── Right Column – Geometric negative space ──────── */}
+      <div className="relative flex items-center justify-center p-8 lg:p-0 min-h-[60vh] lg:min-h-[calc(100vh-175px)] bg-transparent overflow-hidden">
+        <RightPanelDecor />
+      </div>
+    </section>
+  );
+}

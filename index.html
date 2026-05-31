@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!-- Primary SEO -->
+    <title>CryptoCrowd – Web3 Growth & Marketing Agency</title>
+    <meta name="description" content="CryptoCrowd is the Web3 industry's leading marketing agency. We run high-impact KOL campaigns, build global communities, and drive explosive growth for blockchain projects." />
+
+    <!-- Open Graph -->
+    <meta property="og:type"        content="website" />
+    <meta property="og:title"       content="CryptoCrowd – Web3 Growth & Marketing Agency" />
+    <meta property="og:description" content="High-impact KOL campaigns, community management, and growth marketing for top-tier Web3 projects." />
+    <meta property="og:image"       content="/assets/og-image.jpg" />
+    <meta property="og:url"         content="https://cryptocrowd.agency" />
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card"        content="summary_large_image" />
+    <meta name="twitter:title"       content="CryptoCrowd – Web3 Growth & Marketing Agency" />
+    <meta name="twitter:description" content="High-impact KOL campaigns, community management, and growth marketing for top-tier Web3 projects." />
+    <meta name="twitter:image"       content="/assets/og-image.jpg" />
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/jpeg" href="/favicon.jpg" />
+
+    <!-- Preconnect for fonts (critical resource) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&family=Space+Grotesk:wght@300..700&display=swap"
+      rel="stylesheet"
+    />
+
+    <!--
+      Theme Lock Script
+      Runs synchronously before first paint to prevent flash-of-wrong-theme.
+      Reads localStorage and system preference; defaults to dark mode.
+    -->
+    <script>
+      (function () {
+        try {
+          var saved   = localStorage.getItem('theme');
+          var prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+          // Apply light-mode class only when explicitly light or when system prefers light
+          if (saved === 'light' || (!saved && !prefersDark)) {
+            document.documentElement.classList.add('light-mode');
+          } else {
+            document.documentElement.classList.remove('light-mode');
+          }
+        } catch (e) {}
+      })();
+    </script>
+
+    <!-- Spline Viewer Web Component (deferred, non-blocking) -->
+    <script type="module" src="https://unpkg.com/@splinetool/viewer@1.12.82/build/spline-viewer.js" crossorigin="anonymous" onerror="console.warn('[Spline] Failed to load viewer')"></script>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.jsx"></script>
+  </body>
+</html>

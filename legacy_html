@@ -1,0 +1,35 @@
+# CryptoCrowd Agency - Design System & UI/UX Guidelines
+
+## Overview
+This repository contains the foundational HTML/Tailwind templates for the **CryptoCrowd** Web3/Blockchain Agency redesign. The architecture is built on the "Kinetic Ether" design system, heavily influenced by Immersive Web trends and deep space abstract 3D aesthetics.
+
+## UI/UX Pro Max Standards
+
+### 1. Color Palette & Accessibility (WCAG AAA)
+*   **Background (Void):** `#000000` (Pure Black). Used as the deepest `z-index` for infinite space simulation.
+*   **Typography:** `#fffdfc` (Off-white). Yields a **19.3:1 Contrast Ratio** against the background. Strictly required for all readable text.
+*   **Accent & Glow:** `#343cbb` (Electric/Deep Blue). Contrast on black is ~1.77:1. **Do not use for text.** Used exclusively for hover states, active glows, glassmorphism card backgrounds, and CTA gradients.
+
+### 2. Layout Rules
+*   **Tonal Carving (No 1px solid borders):** Do not draw boxes using standard solid lines. Separation between sections must be achieved using "Ghost Borders" (e.g. `rgba(255, 255, 255, 0.05)`) or soft Z-depth glows.
+*   **Glassmorphism (Backdrop Blur):** All floating components (Cards, Navbars, Popups) must have `backdrop-filter: blur(16px)` layered over a black/transparent or #343cbb/transparent base to ensure immersive 3D backgrounds stay visible behind the content.
+*   **Bento Grid Balance:** Portfolio layout uses dynamic structural grids (`gap-6` or `gap-8`) balancing asymmetrical box sizes. Hovering any Bento cell must trigger a subtle scale (`scale-105`) and an ambient neon footprint to signal interactivity.
+
+### 3. Typography Hierarchy
+*   **Primary Font:** `Space Grotesk` (for Display, Heros, Titles).
+*   **Secondary Font:** `Inter` (for Body text).
+*   **Scale Shock:** Create extreme contrast in sizes between Headings (`text-5xl` to `text-7xl`) and Labels (`text-xs`).
+*   **High-End Feel:** Apply `tracking-wide` (0.05em spacing) or `tracking-wider` on main titles and buttons to induce an editorial, luxury-tech vibe.
+
+### 4. Interactive Components
+*   **Power Cell (CTA Button):** Dynamic calls to action should include the `#343cbb` ripple animation (using multiple sweeping scale keyframes).
+*   **Proof of Work Band:** Partner logos must sit directly on the void (without containing boxes). Use a low-opacity monochrome `#fffdfc` state by default, illuminating to full brightness with a neon `#343cbb` drop-shadow on user hover.
+
+## React/Tailwind Migration Notes
+When moving this architecture into Next.js/React:
+1. Wrap the `hero-bg.png` 3D background in a fixed Layout wrapper (or Next Image with `layout="fill"`) so the React Router doesn't re-render it across page transitions.
+2. Port the CSS animations (Ripple) into Tailwind's `tailwind.config.js` via the `keyframes` setting out of the box.
+3. Keep the `gap-8` metrics standard for any `.map()` rendered portfolio items.
+
+## Assets
+- `/assets/hero-bg.png`: V4 High-End 3D Abstract Background output.
